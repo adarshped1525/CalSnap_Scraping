@@ -1,0 +1,96 @@
+Steps to follow:
+1. Install the necessary package:
+- pip install google-images-search 
+- pip install google-images-search pandas openpyxl
+
+NOTE: For Windows, you don't need curses to work with google-images-search. The google-images-search package might be importing curses unnecessarily.
+
+Here’s how you can modify the library to avoid curses:
+Navigate to the Library Location:
+
+Go to the following path on your system where the google-images-search library is installed:
+
+C:\Users\moksh\AppData\Local\Programs\Python\Python312\Lib\site-packages\google_images_search
+
+Open the fetch_resize_save.py File:
+
+Locate the file fetch_resize_save.py in the google_images_search folder.
+Comment out the curses Import:
+
+Open the file in a text editor, and comment out the following line:
+
+import curses
+
+Save the File:
+
+After commenting out or removing the line, save the file.
+This should resolve the issue if curses is not critical for the functionality you're using.		
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Get a Google Custom Search API Key and Search Engine ID:
+
+(a). Set up a Google Cloud Project and Enable the Custom Search API
+Create a Google Cloud account: If you don’t already have a Google Cloud account, sign up at Google Cloud Console.
+
+Create a new project:
+
+In the Google Cloud Console, go to the Google Cloud Console Dashboard.
+Click the Select a project button in the top-left corner and choose New Project.
+Give your project a name (e.g., "Image Scraper") and click Create.
+Enable the Custom Search API:
+
+After your project is created, go to the APIs & Services Dashboard.
+Click on Enable APIs and Services at the top.
+In the search bar, type Custom Search API and select it.
+Click Enable to activate the API for your project.
+Create an API Key:
+
+Go to the APIs & Services > Credentials section in the left-hand menu.
+Click Create Credentials at the top and choose API Key.
+You’ll get an API key that looks like this: AIzaSyC1Z-abcDEF12gHijKlMNOpQrS9tuVwxyZ.
+Important: Keep this key safe as it allows access to Google APIs. You can restrict it later to specific IPs, referrers, or services for added security.
+
+
+
+(b). Create a Custom Search Engine (CSE) for Images
+Now you’ll create a Custom Search Engine (CSE) that allows you to search for images specifically.
+
+Go to the Custom Search Engine page:
+
+Visit the Custom Search Engine page.
+Create a new Search Engine:
+
+Click on New Search Engine.
+In the "Sites to search" field, you can enter any domain (e.g., example.com). For scraping general Google images, you can enter google.com for now. But this will later be configured to search the entire web.
+Choose a language for the search results.
+Give your search engine a name (e.g., "Image Searcher") and click Create.
+Modify the Search Engine settings:
+
+After creating the search engine, click on Control Panel.
+Scroll down to the section Search the entire web and select ON. This allows your search engine to pull results from across the web, not just the sites you specified earlier.
+Save your changes.
+Get the Search Engine ID (CX):
+
+On the same page (Control Panel), you’ll see a section labeled Search Engine ID. It will look like a string of characters similar to this: 012345678910123456789:abcde_fghij.
+This is your Custom Search Engine ID (CX), and you'll need it for your Python code.
+
+After creating the search engine, you'll be redirected to a confirmation page. Click on the Control Panel button to access the settings of your newly created search engine.
+Set "Search the Entire Web":
+
+Scroll down to the Sites to Search section in the control panel.
+Under this section, find the option that says Search the entire web and switch it ON.
+
+This will configure your Custom Search Engine to search across all of Google, rather than just the specific sites you initially provided.
+Save the Changes:
+
+After making this change, be sure to Save your configuration by clicking the Save button at the bottom of the page.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Using the API Key and CX in Your Python Script
+After getting your API key and the Search Engine ID (CX), you can add them to your Python code like this:
+
+# Replace these with your actual API key and Search Engine ID (CX)
+API_KEY = 'YOUR_GOOGLE_API_KEY'
+CX = 'YOUR_SEARCH_ENGINE_ID'

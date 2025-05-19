@@ -1,0 +1,5 @@
+requests
+beautifulsoup4
+pandas
+openpyxl
+git+https://github.com/arrrlo/Google-Images-Search.git
